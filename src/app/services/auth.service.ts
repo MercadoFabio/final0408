@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map, catchError, throwError } from 'rxjs';
-import { User } from '../interfaces/user.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable} from 'rxjs';
+import {User} from "../interfaces/user.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -13,51 +13,48 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     /**
-     * Método para autenticar usuario
-     * Hace petición GET a /users con email y password como query params
+     * TODO: IMPLEMENTAR - Método para autenticar usuario
+     * Instrucciones:
+     * 1. Hacer petición GET a http://localhost:3000/users con email y password como query params
+     * 2. Si la API devuelve un usuario (array con un elemento), login exitoso
+     * 3. Guardar el ID del usuario en localStorage como "token"
+     * 4. Retornar Observable con el usuario encontrado o error
      */
     login(email: string, password: string): Observable<User> {
-        const params = new HttpParams()
-            .set('email', email)
-            .set('password', password);
-
-        return this.http.get<User[]>(this.apiUrl, { params }).pipe(
-            map(users => {
-                if (users && users.length > 0) {
-                    const user = users[0];
-                    // Guardar el ID del usuario como "token" en localStorage
-                    localStorage.setItem(this.tokenKey, user.id);
-                    return user;
-                } else {
-                    throw new Error('Credenciales incorrectas');
-                }
-            }),
-            catchError(error => {
-                return throwError(() => new Error('Credenciales incorrectas'));
-            })
-        );
+        // TODO: Implementar lógica de login
+        // Crear HttpParams con email y password
+        // Hacer petición GET al API
+        // Procesar respuesta y guardar token si es exitoso
+        throw new Error('Método login no implementado');
     }
 
     /**
-     * Método para cerrar sesión
-     * Elimina el token del localStorage
+     * TODO: IMPLEMENTAR - Método para cerrar sesión
+     * Instrucciones:
+     * 1. Eliminar el token del localStorage
      */
     logout(): void {
-        localStorage.removeItem(this.tokenKey);
+        // TODO: Implementar lógica de logout
+        // Eliminar token del localStorage
     }
 
     /**
-     * Método para verificar si el usuario está autenticado
-     * Verifica si existe token en localStorage
+     * TODO: IMPLEMENTAR - Método para verificar autenticación
+     * Instrucciones:
+     * 1. Verificar si existe token en localStorage
+     * 2. Retornar true si existe, false si no
      */
     isAuthenticated(): boolean {
-        return localStorage.getItem(this.tokenKey) !== null;
+        // TODO: Implementar verificación de autenticación
+        // Verificar si existe token en localStorage
+        return false;
     }
 
     /**
-     * Método para obtener el ID del usuario actual
+     * Método auxiliar para obtener el ID del usuario actual
+     * (Ya implementado para ayuda)
      */
     getCurrentUserId(): string | null {
         return localStorage.getItem(this.tokenKey);
     }
-} 
+}

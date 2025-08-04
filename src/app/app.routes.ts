@@ -4,12 +4,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [authGuard]
-  },
-  { path: '**', redirectTo: '/login' }
+  //TODO: Define las rutas para tu aplicación usando los respectivos guards y lazy loading
+
 ];

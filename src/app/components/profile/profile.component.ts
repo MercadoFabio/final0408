@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { User } from '../../interfaces/user.interface';
+import {User} from "../../interfaces/user.interface";
 
 @Component({
     selector: 'app-profile',
@@ -23,45 +23,51 @@ export class ProfileComponent implements OnInit {
         private router: Router
     ) { }
 
+    /**
+     * TODO: IMPLEMENTAR - Método ngOnInit
+     * Instrucciones:
+     * 1. Obtener el ID del usuario desde authService.getCurrentUserId()
+     * 2. Si existe ID: llamar a loadUserProfile()
+     * 3. Si no existe ID: redirigir a /login
+     */
     ngOnInit(): void {
-        this.loadUserProfile();
+        // TODO: Implementar lógica de inicialización
+        // Obtener ID del usuario actual
+        // Cargar perfil del usuario o redirigir a login si no hay ID
+        console.log('TODO: Implementar ngOnInit');
     }
 
     /**
-     * Cargar datos del perfil del usuario
+     * TODO: IMPLEMENTAR - Método para cargar datos del usuario
+     * Instrucciones:
+     * 1. Obtener ID del usuario desde authService
+     * 2. Usar userService.getUserById() para obtener datos
+     * 3. Asignar datos a la propiedad 'user'
+     * 4. Manejar errores apropiadamente
      */
     private loadUserProfile(): void {
-        const userId = this.authService.getCurrentUserId();
-
-        if (userId) {
-            this.userService.getUserById(userId).subscribe({
-                next: (user) => {
-                    this.user = user;
-                    this.isLoading = false;
-                },
-                error: (error) => {
-                    this.errorMessage = 'Error al cargar los datos del perfil';
-                    this.isLoading = false;
-                    console.error('Error loading user profile:', error);
-                }
-            });
-        } else {
-            // No hay usuario logueado, redirigir a login
-            this.router.navigate(['/login']);
-        }
+        // TODO: Implementar carga del perfil
+        // Obtener ID del usuario
+        // Llamar a userService.getUserById()
+        // Asignar resultado a this.user
+        // Manejar errores y estados de carga
+        console.log('TODO: Implementar loadUserProfile');
     }
 
     /**
-     * Cerrar sesión del usuario
+     * TODO: IMPLEMENTAR - Método para cerrar sesión
+     * Instrucciones:
+     * 1. Llamar a authService.logout()
+     * 2. Redirigir al usuario a /login
      */
     logout(): void {
-        this.authService.logout();
-        this.router.navigate(['/login']);
+        // TODO: Implementar logout
+        // Llamar a authService.logout()
+        // Redirigir a /login
+        console.log('TODO: Implementar logout');
     }
 
-    /**
-     * Obtener clase CSS según el rol del usuario
-     */
+    // Métodos auxiliares ya implementados para facilitar el desarrollo
     getRoleClass(role: string): string {
         switch (role?.toLowerCase()) {
             case 'manager':
@@ -75,9 +81,6 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-    /**
-     * Obtener icono según el rol del usuario
-     */
     getRoleIcon(role: string): string {
         switch (role?.toLowerCase()) {
             case 'manager':
@@ -90,4 +93,4 @@ export class ProfileComponent implements OnInit {
                 return '👤';
         }
     }
-} 
+}

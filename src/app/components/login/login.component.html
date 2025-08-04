@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-primary btn-lg" [disabled]="isLoading">
                     <span class="spinner-border spinner-border-sm me-2" *ngIf="isLoading" role="status"
                         aria-hidden="true"></span>
-                    {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+                  Iniciar Sesión
                 </button>
             </div>
         </form>
@@ -46,7 +46,10 @@
         <!-- Información de prueba -->
         <div class="mt-4 p-3 bg-light rounded">
             <h6 class="fw-bold">Credenciales de prueba:</h6>
-
+            <small class="text-muted">
+                <strong>Email:</strong> "ana.martinezempresa.com"<br>
+                <strong>Password:</strong> password123
+            </small>
         </div>
     </div>
 </div>

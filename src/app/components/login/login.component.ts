@@ -23,48 +23,46 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        // Crear formulario con validaciones
-        this.loginForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(6)]]
-        });
+        /**
+         * TODO: IMPLEMENTAR - Crear formulario con validaciones
+         * Instrucciones:
+         * 1. Crear FormGroup con campos 'email' y 'password'
+         * 2. Agregar validaciones: ambos campos requeridos
+         * 3. Para email: también agregar validación de email
+         * 4. Para password: también agregar validación de longitud mínima (6 caracteres)
+         */
 
-        // Si ya está autenticado, redirigir al perfil
+        // TODO: Crear formulario usando FormBuilder
+        // this.loginForm = this.fb.group({
+        //   email: ['', [Validators.required, Validators.email]],
+        //   password: ['', [Validators.required, Validators.minLength(6)]]
+        // });
+
+        // Verificar si ya está autenticado (código ya implementado)
         if (this.authService.isAuthenticated()) {
             this.router.navigate(['/profile']);
         }
     }
 
     /**
-     * Método para manejar el envío del formulario
+     * TODO: IMPLEMENTAR - Método para manejar envío del formulario
+     * Instrucciones:
+     * 1. Verificar si el formulario es válido
+     * 2. Si es válido: llamar a authService.login() con email y password
+     * 3. Si login exitoso: redirigir a /profile
+     * 4. Si login falla: mostrar mensaje de error
+     * 5. Si formulario no es válido: marcar campos como tocados para mostrar errores
      */
     onSubmit(): void {
-        if (this.loginForm.valid) {
-            this.isLoading = true;
-            this.errorMessage = '';
-
-            const { email, password } = this.loginForm.value;
-
-            this.authService.login(email, password).subscribe({
-                next: (user) => {
-                    this.isLoading = false;
-                    // Login exitoso, redirigir al perfil
-                    this.router.navigate(['/profile']);
-                },
-                error: (error) => {
-                    this.isLoading = false;
-                    this.errorMessage = 'Credenciales incorrectas';
-                }
-            });
-        } else {
-            // Marcar todos los campos como tocados para mostrar errores
-            this.markFormGroupTouched();
-        }
+        // TODO: Implementar lógica de envío
+        // Verificar validez del formulario
+        // Obtener valores de email y password
+        // Llamar a authService.login()
+        // Manejar respuesta exitosa y errores
+        console.log('TODO: Implementar método onSubmit');
     }
 
-    /**
-     * Marcar todos los campos del formulario como tocados
-     */
+    // Métodos auxiliares ya implementados para facilitar el desarrollo
     private markFormGroupTouched(): void {
         Object.keys(this.loginForm.controls).forEach(key => {
             const control = this.loginForm.get(key);
@@ -72,17 +70,11 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    /**
-     * Verificar si un campo tiene errores y ha sido tocado
-     */
     isFieldInvalid(fieldName: string): boolean {
         const field = this.loginForm.get(fieldName);
         return !!(field && field.invalid && field.touched);
     }
 
-    /**
-     * Obtener mensaje de error para un campo específico
-     */
     getFieldError(fieldName: string): string {
         const field = this.loginForm.get(fieldName);
 
@@ -99,4 +91,4 @@ export class LoginComponent implements OnInit {
         }
         return '';
     }
-} 
+}
