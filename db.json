@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "id": "usr-001",
+            "name": "Ana Martínez",
+            "email": "ana.martinez@empresa.com",
+            "password": "password123",
+            "role": "Manager"
+        },
+        {
+            "id": "usr-002",
+            "name": "Javier Gómez",
+            "email": "javier.gomez@empresa.com",
+            "password": "password456",
+            "role": "Developer"
+        },
+        {
+            "id": "usr-003",
+            "name": "Sofía Castro",
+            "email": "sofia.castro@empresa.com",
+            "password": "password789",
+            "role": "Designer"
+        }
+    ]
+}

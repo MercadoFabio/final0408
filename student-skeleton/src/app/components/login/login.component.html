@@ -1,0 +1,55 @@
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Iniciar Sesión</h2>
+            <p class="text-muted">Acceso para empleados de la empresa</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- Campo Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Corporativo</label>
+                <input type="email" id="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')"
+                    formControlName="email" placeholder="usuario@empresa.com">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                    {{ getFieldError('email') }}
+                </div>
+            </div>
+
+            <!-- Campo Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" class="form-control"
+                    [class.is-invalid]="isFieldInvalid('password')" formControlName="password"
+                    placeholder="Ingrese su contraseña">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('password')">
+                    {{ getFieldError('password') }}
+                </div>
+            </div>
+
+            <!-- Mensaje de Error General -->
+            <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+                <i class="bi bi-exclamation-triangle"></i>
+                {{ errorMessage }}
+            </div>
+
+            <!-- Botón Submit -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="isLoading">
+                    <span class="spinner-border spinner-border-sm me-2" *ngIf="isLoading" role="status"
+                        aria-hidden="true"></span>
+                    {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+                </button>
+            </div>
+        </form>
+
+        <!-- Información de prueba -->
+        <div class="mt-4 p-3 bg-light rounded">
+            <h6 class="fw-bold">Credenciales de prueba:</h6>
+            <small class="text-muted">
+                <strong>Email:</strong> ana.martinez@empresa.com<br>
+                <strong>Password:</strong> password123
+            </small>
+        </div>
+    </div>
+</div>
